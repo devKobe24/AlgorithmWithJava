@@ -1,28 +1,30 @@
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
-class Solution {
-  public int[] solution(int n) {
+public class Solution {
+	public int[] solution(int n) {
+		boolean condition = n >= 1 && n <= 100;
+		int[] answer = {};
+		List<Integer> arrayList = Arrays.stream(answer)
+		                                .boxed()
+		                                .collect(Collectors.toList());
 
-    // 제한 사항
-    if (n < 1 && n > 100) {
-      return null;
-    }
+		if (condition == true) {
+			for (int i = 1; i <= n; i++) {
+				if (i % 2 != 0) {
+					arrayList.add(i);
+				}
+			}
+		}
 
-    // sort를 위한 ArrayList
-    ArrayList<Integer> numbers = new ArrayList<>();
+		Collections.sort(arrayList);
 
-    int[] answer = new int[n];
+		answer = arrayList.stream()
+		                  .mapToInt(Integer::intValue)
+		                  .toArray();
 
-    // 홀수만 거르기
-    for (int i = 1; i <= answer.length; i++) {
-      if (i % 2 != 0) {
-        numbers.add(i);
-      }
-    }
-
-    // sort후 Array로 변환
-    answer = numbers.stream().mapToInt(Integer::intValue).toArray();
-    
-    return answer;
-  }
+		return answer;
+	}
 }
